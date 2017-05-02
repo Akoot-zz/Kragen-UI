@@ -55,18 +55,38 @@ public class KragenUI extends Application
 
 	private void drawContent(Stage stage)
 	{
+		/* Background */
 		Pane bg = new Pane();
 		bg.setStyle("-fx-background-color: #2b2b2b;");
+		
+		/* Topbar */
 		Node close = new CloseButton().node();
 		close.setOnMouseClicked(e -> stage.close());
-		HorizontalButton test = new HorizontalButton();
-		test.setSize(200, 50);
-		test.setColor(Color.BLACK, Color.ORANGE, Color.WHITE);
+		
+		/* Test 1 */
+		HorizontalButton test = new HorizontalButton("disable me!");
+		test.setSize(120, 40);
+		test.setColor(Color.color(0.15, 0.15, 0.15), Color.SPRINGGREEN, Color.WHITE);
+		test.onClick(e -> System.out.println("mama luigi"));
+		
+		/* Test 2 */
+		HorizontalButton test2 = new HorizontalButton("click me!");
+		test2.setSize(120, 40);
+		test2.setColor(Color.color(0.15, 0.15, 0.15), Color.CORAL, Color.WHITE);
+		test2.onClick(e -> test.setEnabled(!test.isEnabled()));
+		
+		/* Position Test 1 */
 		Node testButton = test.node();
-		testButton.setOnMouseClicked(e -> System.out.println("mama luigi"));
 		testButton.setLayoutX(100);
 		testButton.setLayoutY(100);
-		bg.getChildren().addAll(close, testButton);
+		
+		/* Position Test 2 */
+		Node test2Button = test2.node();
+		test2Button.setLayoutX(100);
+		test2Button.setLayoutY(140);
+		
+		/* Add children */
+		bg.getChildren().addAll(close, testButton, test2Button);
 		root.getChildren().addAll(bg);
 	}
 	

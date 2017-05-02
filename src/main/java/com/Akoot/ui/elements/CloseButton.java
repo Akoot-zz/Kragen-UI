@@ -29,7 +29,7 @@ public class CloseButton
 		final Timeline upAnimation = new Timeline();
 
 		/* Create Background */
-		final Rectangle bg = new Rectangle(0, 0, 40, 40);
+		final Rectangle bg = new Rectangle(0, 0, 35, 35);
 		bg.setFill(Color.color(0.87, 0.15, 0.27));
 
 		/* Create X */
