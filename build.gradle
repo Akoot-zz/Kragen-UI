@@ -23,7 +23,6 @@ dependencies {
 	compile group: 'net.lingala.zip4j', name: 'zip4j', version: '1.3.2'
 	compile group: 'com.Akoot', name: 'Akoot-Util', version: '0.0.6a'
 	compile 'com.jfoenix:jfoenix:1.2.0'
-	compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
 
 }
 
