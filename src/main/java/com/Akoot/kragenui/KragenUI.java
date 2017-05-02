@@ -1,14 +1,15 @@
 package com.Akoot.kragenui;
 
 import com.Akoot.ui.elements.CloseButton;
+import com.Akoot.ui.elements.HorizontalButton;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -28,6 +29,18 @@ public class KragenUI extends Application
 		/* Root of UI */
 		root = new StackPane();
 		root.setPrefSize(1100, 700);
+		
+		final Delta dragDelta = new Delta();
+		root.setOnMousePressed(e -> 
+		{
+			dragDelta.x = stage.getX() - e.getScreenX();
+		    dragDelta.y = stage.getY() - e.getScreenY();
+		});
+		root.setOnMouseDragged(e -> 
+		{
+			stage.setX(e.getScreenX() + dragDelta.x);
+		    stage.setY(e.getScreenY() + dragDelta.y);
+		});
 
 		drawContent(stage);
 
@@ -37,10 +50,6 @@ public class KragenUI extends Application
 		stage.initStyle(StageStyle.UNDECORATED);
 		stage.getIcons().add(new Image("file:assets/icons/icon.png"));
 		stage.setScene(scene);
-		for(Node node: root.getChildren())
-		{
-			System.out.println(node.toString());
-		}
 		stage.show();
 	}
 
@@ -50,7 +59,14 @@ public class KragenUI extends Application
 		bg.setStyle("-fx-background-color: #2b2b2b;");
 		Node close = new CloseButton().node();
 		close.setOnMouseClicked(e -> stage.close());
-		bg.getChildren().add(close);
+		HorizontalButton test = new HorizontalButton();
+		test.setSize(200, 50);
+		test.setColor(Color.BLACK, Color.ORANGE, Color.WHITE);
+		Node testButton = test.node();
+		testButton.setOnMouseClicked(e -> System.out.println("mama luigi"));
+		testButton.setLayoutX(100);
+		testButton.setLayoutY(100);
+		bg.getChildren().addAll(close, testButton);
 		root.getChildren().addAll(bg);
 	}
 	
