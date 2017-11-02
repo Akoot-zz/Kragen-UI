@@ -2,6 +2,8 @@ package com.Akoot.kragenui;
 
 import com.Akoot.ui.elements.CloseButton;
 import com.Akoot.ui.elements.HorizontalButton;
+import com.Akoot.util.RandomUtils;
+import com.Akoot.util.Range;
 
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -63,30 +65,20 @@ public class KragenUI extends Application
 		Node close = new CloseButton().node();
 		close.setOnMouseClicked(e -> stage.close());
 		
-		/* Test 1 */
-		HorizontalButton test = new HorizontalButton("disable me!");
-		test.setSize(120, 40);
-		test.setColor(Color.color(0.15, 0.15, 0.15), Color.SPRINGGREEN, Color.WHITE);
-		test.onClick(e -> System.out.println("mama luigi"));
-		
-		/* Test 2 */
-		HorizontalButton test2 = new HorizontalButton("click me!");
-		test2.setSize(120, 40);
-		test2.setColor(Color.color(0.15, 0.15, 0.15), Color.CORAL, Color.WHITE);
-		test2.onClick(e -> test.setEnabled(!test.isEnabled()));
-		
-		/* Position Test 1 */
-		Node testButton = test.node();
-		testButton.setLayoutX(100);
-		testButton.setLayoutY(100);
-		
-		/* Position Test 2 */
-		Node test2Button = test2.node();
-		test2Button.setLayoutX(100);
-		test2Button.setLayoutY(140);
-		
 		/* Add children */
-		bg.getChildren().addAll(close, testButton, test2Button);
+		bg.getChildren().addAll(close);
+		
+		for(int i = 0; i < 10; i++)
+		{
+			HorizontalButton test = new HorizontalButton(RandomUtils.randomString(8));
+			test.setSize(500, 40);
+			test.setColor(Color.color(0.15, 0.15, 0.15), Color.color((double) (RandomUtils.randomNumber(new Range(50, 100))) / 100.0, (double) (RandomUtils.randomNumber(new Range(50, 100))) / 100.0, (double) (RandomUtils.randomNumber(new Range(50, 100))) / 100.0), Color.WHITESMOKE);
+			test.onClick(e -> System.out.println("Button is TRIGGERED"));
+			Node button = test.getNode();
+			button.setLayoutX(100);
+			button.setLayoutY(100 + (40 * i));
+			bg.getChildren().add(button);
+		}
 		root.getChildren().addAll(bg);
 	}
 	

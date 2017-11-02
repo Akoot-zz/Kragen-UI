@@ -103,7 +103,7 @@ public class HorizontalButton
 		return enabled;
 	}
 
-	public Node node()
+	public Node getNode()
 	{
 		long now = System.currentTimeMillis();
 
